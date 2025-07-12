@@ -1,0 +1,9 @@
+{
+  "default": true,
+  "line-length": false,
+  "no-duplicate-heading": false,
+  "no-inline-html": false,
+  "ignore": [
+    "node_modules/**"
+  ]
+}
