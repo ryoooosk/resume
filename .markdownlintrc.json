@@ -3,7 +3,12 @@
   "line-length": false,
   "no-duplicate-heading": false,
   "no-inline-html": false,
+  "MD013": {
+    "line_length": 90
+  },
+  "MD041": false,
   "ignore": [
-    "node_modules/**"
+    "node_modules/**",
+    "CLAUDE.md"
   ]
 }
