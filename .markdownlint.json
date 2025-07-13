@@ -6,9 +6,5 @@
   "MD013": {
     "line_length": 90
   },
-  "MD041": false,
-  "ignore": [
-    "node_modules/**",
-    "CLAUDE.md"
-  ]
+  "MD041": false
 }
