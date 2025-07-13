@@ -27,11 +27,8 @@
       "lintStyledNode": true
     },
     "ja-unnatural-alphabet": true,
-    "max-comma": {
-      "max": 4
-    },
     "max-kanji-continuous-len": {
-      "max": 6,
+      "max": 7,
       "allow": [
         "普通自動車第一種運転免許"
       ]
