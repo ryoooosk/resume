@@ -4,13 +4,12 @@
 
 **🌐 <https://ryoooosk.github.io/resume/>**
 
-このプロジェクトは職務経歴書を Markdown で管理し、GitHub Pages で公開、PDF として出力するためのリポジトリです。
+このプロジェクトは職務経歴書を Markdown で管理し、GitHub Pages で公開するためのリポジトリです。
 
 ## 機能
 
 - **Markdown 形式での履歴書管理**: `index.md` で履歴書を管理
 - **GitHub Pages 対応**: Jekyll（minima テーマ）を使用して Web サイトとして公開
-- **PDF 出力**: md-to-pdf を使用して PDF 形式での出力が可能
 - **品質管理**: textlint と markdownlint による文書品質チェック
 
 ## ファイル構成
@@ -21,9 +20,6 @@ resume/
 ├── index.md              # 職務経歴書本体
 ├── _config.yml           # Jekyll設定ファイル
 ├── package.json          # Node.js依存関係とスクリプト
-├── pdf-configs/          # PDF出力設定
-│   ├── config.js         # md-to-pdf設定
-│   └── style.css         # PDFスタイル
 └── node_modules/         # Node.js依存関係
 ```
 
@@ -41,13 +37,6 @@ npm install
 ```bash
 # textlintとmarkdownlintを実行
 npm run lint
-```
-
-### PDF 出力
-
-```bash
-# 職務経歴書をPDF形式で出力
-npm run build:pdf
 ```
 
 ## GitHub Pages 設定
@@ -73,10 +62,6 @@ npm run build:pdf
 
 Markdown の記法チェックを行い、一貫性のある文書フォーマットを維持します。
 
-### md-to-pdf
-
-Markdown ファイルを PDF に変換するツール。カスタム CSS（`pdf-configs/style.css`）を適用してスタイリングを行います。
-
 ### Jekyll (GitHub Pages)
 
 静的サイトジェネレーター。`minima` テーマを使用してシンプルで読みやすい Web ページを生成します。
@@ -87,13 +72,4 @@ Markdown ファイルを PDF に変換するツール。カスタム CSS（`pdf-
 
 - **トリガー**: プルリクエスト、手動実行
 - **処理内容**: textlint と markdownlint による文書品質チェック
-- **実行環境**: Ubuntu Latest, Node.js 18
-
-### PDF リリース (`.github/workflows/release-pdf.yml`)
-
-- **トリガー**: `docs/README.md` が変更されたプルリクエスト、手動実行
-- **処理内容**:
-  - 職務経歴書の PDF 生成
-  - GitHub Releases へのドラフトリリース作成
-  - PDF ファイルの自動アップロード
 - **実行環境**: Ubuntu Latest, Node.js 18
