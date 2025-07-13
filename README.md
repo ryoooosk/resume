@@ -4,18 +4,18 @@
 
 **🌐 <https://ryoooosk.github.io/resume/>**
 
-このプロジェクトは職務経歴書をMarkdownで管理し、GitHub Pagesで公開、PDFとして出力するためのリポジトリです。
+このプロジェクトは職務経歴書を Markdown で管理し、GitHub Pages で公開、PDF として出力するためのリポジトリです。
 
 ## 機能
 
-- **Markdown形式での職務経歴書管理**: `index.md`で職務経歴書を管理
-- **GitHub Pages対応**: Jekyll（minimaテーマ）を使用してWebサイトとして公開
-- **PDF出力**: md-to-pdfを使用してPDF形式での出力が可能
-- **品質管理**: textlintとmarkdownlintによる文書品質チェック
+- **Markdown 形式での履歴書管理**: `index.md` で履歴書を管理
+- **GitHub Pages 対応**: Jekyll（minima テーマ）を使用して Web サイトとして公開
+- **PDF 出力**: md-to-pdf を使用して PDF 形式での出力が可能
+- **品質管理**: textlint と markdownlint による文書品質チェック
 
 ## ファイル構成
 
-```
+```sh
 resume/
 ├── README.md              # プロジェクト概要（このファイル）
 ├── index.md              # 職務経歴書本体
@@ -43,25 +43,26 @@ npm install
 npm run lint
 ```
 
-### PDF出力
+### PDF 出力
 
 ```bash
 # 職務経歴書をPDF形式で出力
 npm run build:pdf
 ```
 
-## GitHub Pages設定
+## GitHub Pages 設定
 
-このリポジトリはGitHub Pagesを使用してWebサイトとして公開されます。`_config.yml`でJekyllのminimaテーマが設定されており、`index.md`の内容が自動的にWebページとして表示されます。
+このリポジトリは GitHub Pages を使用して Web サイトとして公開されます。
+`_config.yml` で Jekyll の minima テーマが設定されており、`index.md` の内容が自動的に Web ページとして表示されます。
 
 ## 使用ライブラリ
 
 ### textlint
 
-日本語文書の校正ツール。以下のルールを適用して文章品質を向上させます：
+日本語文書の校正ツール。次のルールを適用して文章品質を向上させます。
 
 - **@proofdict/textlint-rule-proofdict**: 辞書による校正
-- **@textlint-ja/textlint-rule-no-dropping-i**: 「い」抜き言葉の検出
+- **@textlint-ja/textlint-rule-no-dropping-i**:「い」抜き言葉の検出
 - **textlint-rule-ja-hiragana-hojodoushi**: 補助動詞のひらがな表記チェック
 - **textlint-rule-ja-no-abusage**: 日本語の誤用検出
 - **textlint-rule-ja-no-mixed-period**: 句読点の統一
@@ -70,15 +71,15 @@ npm run build:pdf
 
 ### markdownlint-cli
 
-Markdownの記法チェックを行い、一貫性のある文書フォーマットを維持します。
+Markdown の記法チェックを行い、一貫性のある文書フォーマットを維持します。
 
 ### md-to-pdf
 
-MarkdownファイルをPDFに変換するツール。カスタムCSS（`pdf-configs/style.css`）を適用してスタイリングを行います。
+Markdown ファイルを PDF に変換するツール。カスタム CSS（`pdf-configs/style.css`）を適用してスタイリングを行います。
 
 ### Jekyll (GitHub Pages)
 
-静的サイトジェネレーター。`minima`テーマを使用してシンプルで読みやすいWebページを生成します。
+静的サイトジェネレーター。`minima` テーマを使用してシンプルで読みやすい Web ページを生成します。
 
 ## CI/CD
 
@@ -92,7 +93,7 @@ MarkdownファイルをPDFに変換するツール。カスタムCSS（`pdf-conf
 
 - **トリガー**: `docs/README.md` が変更されたプルリクエスト、手動実行
 - **処理内容**:
-  - 職務経歴書のPDF生成
+  - 職務経歴書の PDF 生成
   - GitHub Releases へのドラフトリリース作成
   - PDF ファイルの自動アップロード
 - **実行環境**: Ubuntu Latest, Node.js 18
