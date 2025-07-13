@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "lint": "textlint . && markdownlint ."
+    "lint": "textlint . && markdownlint .",
+    "lint:fix": "textlint --fix . && markdownlint --fix ."
   },
   "keywords": [],
   "author": "",
