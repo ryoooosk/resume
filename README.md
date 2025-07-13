@@ -66,7 +66,7 @@ Markdown の記法チェックを行い、一貫性のある文書フォーマ�
 
 静的サイトジェネレーター。`minima` テーマを使用してシンプルで読みやすい Web ページを生成します。
 
-## CI/CD
+## CI
 
 ### Lint チェック (`.github/workflows/lint.yml`)
 
