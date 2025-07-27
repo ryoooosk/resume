@@ -1,0 +1,45 @@
+name: Pull Request Lead Time
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize ,closed]
+  
+jobs:
+  lead-time:
+    if: github.event.pull_request.merged == true
+    name: Calculate Lead Time
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Calculate Lead Time
+        id: lead-time
+        run: |
+          CREATED_AT=$(gh pr view "${{ github.event.pull_request.number }}" --json createdAt -q '.createdAt')
+          MERGED_AT="${{ github.event.pull_request.merged_at }}"
+          CREATED_AT_TS=$(date --date="$CREATED_AT" +%s)
+          MERGED_AT_TS=$(date --date="$MERGED_AT" +%s)
+          echo "LEAD_TIME_HOUR=$(( (MERGED_AT_TS - CREATED_AT_TS) / 60 / 60 ))" >> "$GITHUB_OUTPUT"
+      - name: Output Lead Time
+        run: |
+          echo "Lead Time: ${{ steps.lead-time.outputs.LEAD_TIME_HOUR }}"
+    
+  debug:
+    if: github.event.pull_request.merged == false
+    name: Debug Information
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Debug Information
+        run: |
+          echo "Pull Request Number: ${{ github.event.pull_request.number }}"
+          echo "Pull Request Created At: $(gh pr view "${{ github.event.pull_request.number }}" --json createdAt -q '.createdAt')"
+          echo "Pull Request Created At Timestamp: $(date --date="${{ github.event.pull_request.created_at }}" +%s)"
+          echo "Pull Request Merged At: ${{ github.event.pull_request.merged_at }}"
