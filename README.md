@@ -17,8 +17,10 @@
 ```sh
 resume/
 ├── README.md              # プロジェクト概要（このファイル）
+├── CLAUDE.md              # Claude Code向けプロジェクト指示ファイル
 ├── index.md              # 職務経歴書本体
 ├── _config.yml           # Jekyll設定ファイル
+├── .textlintrc.json      # textlint設定ファイル
 ├── package.json          # Node.js依存関係とスクリプト
 └── node_modules/         # Node.js依存関係
 ```
@@ -37,6 +39,9 @@ npm install
 ```bash
 # textlintとmarkdownlintを実行
 npm run lint
+
+# 自動修正可能な問題を修正
+npm run lint:fix
 ```
 
 ## GitHub Pages 設定
@@ -48,19 +53,19 @@ npm run lint
 
 ### textlint
 
-日本語文書の校正ツール。次のルールを適用して文章品質を向上させます。
+日本語文書の校正ツール。`.textlintrc.json` に設定された25以上のルールを適用して文章品質を向上させます。
 
 - **@proofdict/textlint-rule-proofdict**: 辞書による校正
 - **@textlint-ja/textlint-rule-no-dropping-i**:「い」抜き言葉の検出
 - **textlint-rule-ja-hiragana-hojodoushi**: 補助動詞のひらがな表記チェック
 - **textlint-rule-ja-no-abusage**: 日本語の誤用検出
 - **textlint-rule-ja-no-mixed-period**: 句読点の統一
-- **textlint-rule-sentence-length**: 文の長さ制限
+- **textlint-rule-sentence-length**: 文の長さ制限（150文字）
 - その他多数の日本語校正ルール
 
 ### markdownlint-cli
 
-Markdown の記法チェックを行い、一貫性のある文書フォーマットを維持します。
+Markdown の記法チェックを行い、一貫性のある文書フォーマットを維持します。設定はデフォルト設定を使用しています。
 
 ### Jekyll (GitHub Pages)
 
@@ -72,4 +77,4 @@ Markdown の記法チェックを行い、一貫性のある文書フォーマ�
 
 - **トリガー**: プルリクエスト、手動実行
 - **処理内容**: textlint と markdownlint による文書品質チェック
-- **実行環境**: Ubuntu Latest, Node.js 18
+- **実行環境**: Ubuntu Latest, Node.js（デフォルトバージョン）
