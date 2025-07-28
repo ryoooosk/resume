@@ -53,14 +53,14 @@ npm run lint:fix
 
 ### textlint
 
-日本語文書の校正ツール。`.textlintrc.json` に設定された25以上のルールを適用して文章品質を向上させます。
+日本語文書の校正ツール。`.textlintrc.json` に設定された 25 以上のルールを適用して文章品質を向上させます。
 
 - **@proofdict/textlint-rule-proofdict**: 辞書による校正
 - **@textlint-ja/textlint-rule-no-dropping-i**:「い」抜き言葉の検出
 - **textlint-rule-ja-hiragana-hojodoushi**: 補助動詞のひらがな表記チェック
 - **textlint-rule-ja-no-abusage**: 日本語の誤用検出
 - **textlint-rule-ja-no-mixed-period**: 句読点の統一
-- **textlint-rule-sentence-length**: 文の長さ制限（150文字）
+- **textlint-rule-sentence-length**: 文の長さ制限（150 文字）
 - その他多数の日本語校正ルール
 
 ### markdownlint-cli
