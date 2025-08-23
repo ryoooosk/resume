@@ -18,7 +18,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Dependabot metadata
         id: meta
         uses: dependabot/fetch-metadata@v2 ## dependabotの更新内容を取得（https://github.com/dependabot/fetch-metadata）
