@@ -1,4 +1,5 @@
-name: Action lint
+name: GitHub Actions lint
+# GitHub Actionsのワークフロー定義ファイルの文法チェックを行う
 
 on:
   pull_request:
@@ -15,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  actions-lint:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
