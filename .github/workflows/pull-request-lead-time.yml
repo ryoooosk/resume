@@ -81,8 +81,8 @@ jobs:
           echo "lead_time_formatted=${LEAD_TIME_FORMATTED}" >> "${GITHUB_OUTPUT}"
       - name: Output Lead Time
         run: |
-          echo "Lead Time: ${{ steps.lead-time.outputs.result }}"
-          echo "Lead Time: ${{ steps.lead-time.outputs.lead_time_formatted }}"
+          echo 'Lead Time: ${{ steps.lead-time.outputs.result }}'
+          echo 'Lead Time: ${{ steps.lead-time.outputs.lead_time_formatted }}'
       - name: Comment to PR
         run: |
           gh pr comment ${{ github.event.pull_request.number }} --body "リードタイム: ${{ steps.lead-time.outputs.lead_time_formatted }}"
