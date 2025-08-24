@@ -31,27 +31,27 @@ jobs:
           PR_NUMBER="${{ github.event.pull_request.number }}"
 
           # PRの基本情報を取得
-          PR_INFO=$(gh api repos/"$REPO"/pulls/"$PR_NUMBER")
+          PR_INFO=$(gh api repos/"${REPO}"/pulls/"${PR_NUMBER}")
 
           # コミット情報を取得
-          COMMITS_INFO=$(gh api repos/"$REPO"/pulls/"$PR_NUMBER"/commits)
+          COMMITS_INFO=$(gh api repos/"${REPO}"/pulls/"${PR_NUMBER}"/commits)
 
           # レビュー情報を取得
-          REVIEWS_INFO=$(gh api repos/"$REPO"/pulls/"$PR_NUMBER"/reviews)
+          REVIEWS_INFO=$(gh api repos/"${REPO}"/pulls/"${PR_NUMBER}"/reviews)
 
           # 最初のコミット日時を取得
-          FIRST_COMMITTED_AT=$(echo "$COMMITS_INFO" | jq -r '.[0].commit.author.date')
+          FIRST_COMMITTED_AT=$(echo "${COMMITS_INFO}" | jq -r '.[0].commit.author.date')
 
           # 最初のレビュー日時を取得（レビューがない場合はnull）
-          FIRST_REVIEWED_AT=$(echo "$REVIEWS_INFO" | jq -r 'if length > 0 then .[0].submitted_at else null end')
+          FIRST_REVIEWED_AT=$(echo "${REVIEWS_INFO}" | jq -r 'if length > 0 then .[0].submitted_at else null end')
 
           # マージ日時を取得
-          MERGED_AT=$(echo "$PR_INFO" | jq -r '.merged_at')
+          MERGED_AT=$(echo "${PR_INFO}" | jq -r '.merged_at')
 
           # JSONデータを作成
-          LEAD_TIME_JSON=$(echo "$PR_INFO" | jq -c \
-            --arg first_commit "$FIRST_COMMITTED_AT" \
-            --arg first_review "$FIRST_REVIEWED_AT" \
+          LEAD_TIME_JSON=$(echo "${PR_INFO}" | jq -c \
+            --arg first_commit "${FIRST_COMMITTED_AT}" \
+            --arg first_review "${FIRST_REVIEWED_AT}" \
             '{
                 repository: .base.repo.name,
                 title: .title,
@@ -67,18 +67,18 @@ jobs:
                 deletions: .deletions
             }')
 
-          echo "result=$LEAD_TIME_JSON" >> "$GITHUB_OUTPUT"
+          echo "result=${LEAD_TIME_JSON}" >> "${GITHUB_OUTPUT}"
 
           # 差分（秒）を計算して出力
-          LEAD_TIME_SEC=$(( $(date -d "$MERGED_AT" +%s) - $(date -d "$FIRST_COMMITTED_AT" +%s) ))
+          LEAD_TIME_SEC=$(( $(date -d "${MERGED_AT}" +%s) - $(date -d "${FIRST_COMMITTED_AT}" +%s) ))
 
           # 時間・分・秒に分解
-          LEAD_TIME_H=$(( LEAD_TIME_SEC / 3600 ))
-          LEAD_TIME_M=$(( (LEAD_TIME_SEC % 3600) / 60 ))
-          LEAD_TIME_S=$(( LEAD_TIME_SEC % 60 ))
+          LEAD_TIME_H=$((LEAD_TIME_SEC / 3600))
+          LEAD_TIME_M=$(((LEAD_TIME_SEC % 3600) / 60))
+          LEAD_TIME_S=$((LEAD_TIME_SEC % 60))
 
           LEAD_TIME_FORMATTED="${LEAD_TIME_H}時間${LEAD_TIME_M}分${LEAD_TIME_S}秒"
-          echo "lead_time_formatted=$LEAD_TIME_FORMATTED" >> "$GITHUB_OUTPUT"
+          echo "lead_time_formatted=${LEAD_TIME_FORMATTED}" >> "${GITHUB_OUTPUT}"
       - name: Output Lead Time
         run: |
           echo "Lead Time: ${{ steps.lead-time.outputs.result }}"
