@@ -8,8 +8,11 @@ on:
       - "package.json"
       - "package-lock.json"
       - "!**/CLAUDE.md"
-
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   textlint:
@@ -17,8 +20,13 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
+
       - uses: actions/setup-node@v4
         with:
           cache: npm
-      - run: npm install
-      - run: npm run lint
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run textlint
+        run: npm run lint
