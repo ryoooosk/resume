@@ -7,9 +7,6 @@
     "lint:fix": "textlint --fix . && markdownlint --fix .",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "*.md": ["textlint", "markdownlint"]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
