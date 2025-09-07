@@ -13,29 +13,11 @@
 - **品質管理**: textlint と markdownlint による文書品質チェック
 - **Git フック**: husky と lint-staged による自動品質チェック
 
-## ファイル構成
-
-```sh
-resume/
-├── README.md              # プロジェクト概要（このファイル）
-├── CLAUDE.md              # Claude Code向けプロジェクト指示ファイル
-├── index.md              # 職務経歴書本体
-├── _config.yml           # Jekyll設定ファイル
-├── .textlintrc.json      # textlint設定ファイル
-├── .markdownlintrc.json  # markdownlint設定ファイル
-├── package.json          # Node.js依存関係とスクリプト
-├── .husky/               # Git フック設定
-│   └── pre-commit        # コミット前フック
-└── node_modules/         # Node.js依存関係
-```
-
 ## セットアップ
 
 ```bash
 # 依存関係のインストール
 npm install
-
-# Git フック（husky）の初期化は自動的に実行されます
 ```
 
 ## 使用方法
@@ -98,8 +80,14 @@ Markdown の記法チェックを行い、一貫性のある文書フォーマ�
 
 ## CI
 
-### Lint チェック (`.github/workflows/lint.yml`)
+### Lint チェック (`.github/workflows/text-lint.yml`)
 
 - **トリガー**: プルリクエスト、手動実行
 - **処理内容**: textlint と markdownlint による文書品質チェック
-- **実行環境**: Ubuntu Latest, Node.js（デフォルトバージョン）
+
+### Secret Scan (`.github/workflows/secret-scan.yml`)
+
+機密情報の漏洩を防ぐためのセキュリティチェック機能。
+
+- **トリガー**: プルリクエスト（main ブランチ向け）
+- **処理内容**: secretlint - API キー、パスワード、トークンなどの機密情報を検出
