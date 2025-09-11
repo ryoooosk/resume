@@ -15,3 +15,5 @@ jobs:
     permissions:
       pull-requests: write
       contents: read
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
