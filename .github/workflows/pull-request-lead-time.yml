@@ -1,5 +1,4 @@
 name: Pull Request Lead Time
-# Four keys metricsの変更のリードタイムに基づき、PRのファーストコミットからマージまでの時間を計測する。
 
 on:
   pull_request:
