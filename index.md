@@ -7,7 +7,7 @@ title: 池井戸 亮佑
 | 生年月日 | 1996 年 2 月 5 日 |
 | 居住地 | 東京都板橋区 |
 | 最終学歴 | 法政大学大学院 デザイン工学研究科 建築学専攻修了 |
-| 資格 | 基本情報技術者、普通自動車第一種運転免許 |
+| 資格 | 基本情報技術者、AWS Certified Solutions Architect - Associate、普通自動車第一種運転免許 |
 | メール | <ryosuke.iikd@gmail.com> |
 | GitHub | <https://github.com/ryoooosk> |
 | 技術ブログ | [Zenn](https://zenn.dev/ryoooosk) |
