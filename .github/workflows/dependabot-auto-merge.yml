@@ -3,7 +3,6 @@ name: Auto merge dependabot pull requests
 
 on:
   pull_request:
-    types: [opened, ready_for_review]
     branches:
       - main
 
