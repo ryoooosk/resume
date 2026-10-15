@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  textlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run textlint
+        run: npm run lint
+
+  secret-scan:
+    uses: ryoooosk/reusable-workflows/.github/workflows/secret-scan.yml@main
+
+  dependabot-auto-merge:
+    needs: [textlint, secret-scan]
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    uses: ryoooosk/reusable-workflows/.github/workflows/dependabot-auto-merge.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
