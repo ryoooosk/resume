@@ -29,3 +29,11 @@ jobs:
 
   secret-scan:
     uses: ryoooosk/reusable-workflows/.github/workflows/secret-scan.yml@main
+
+  dependabot-auto-merge:
+    needs: [textlint, secret-scan]
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    uses: ryoooosk/reusable-workflows/.github/workflows/dependabot-auto-merge.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
