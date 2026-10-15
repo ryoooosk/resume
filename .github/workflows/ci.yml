@@ -1,13 +1,9 @@
-name: Text lint
+name: CI
 
 on:
   pull_request:
-    paths: 
-      - "**/*.md"
-      - ".github/workflows/**"
-      - "package.json"
-      - "package-lock.json"
-      - "!**/CLAUDE.md"
+    branches:
+      - main
   workflow_dispatch:
 
 concurrency:
@@ -30,3 +26,6 @@ jobs:
 
       - name: Run textlint
         run: npm run lint
+
+  secret-scan:
+    uses: ryoooosk/reusable-workflows/.github/workflows/secret-scan.yml@main
